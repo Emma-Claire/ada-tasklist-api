@@ -1,15 +1,15 @@
 class TasksController < ApplicationController
   def index
-    render json: {
+    send_data(data: {
       count: Task.count,
       tasks: Task.all.as_json(only: [:id, :title, :description, :completed])
-    }
+    })
   end
 
   def show
     begin
       task = Task.find(params[:id])
-      render json: task.as_json(only: [:id, :title, :description, :completed])
+      send_data task.as_json(only: [:id, :title, :description, :completed])
     rescue ActiveRecord::RecordNotFound
       render status: :not_found, content: false
     end
@@ -55,5 +55,13 @@ class TasksController < ApplicationController
 private
   def task_params
     params.require(:task).permit(:title, :description, :completed)
+  end
+
+  def send_data(data, status=:success)
+    respond_to do |format|
+      format.js { render :status => status, :json => data, :callback => params[:callback] }
+      format.json { render :status => status, :json => data }
+      format.xml { render :status => status, :xml => data }
+    end
   end
 end

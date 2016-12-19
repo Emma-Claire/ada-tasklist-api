@@ -1,24 +1,61 @@
-# README
+# Ada TaskList API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an API to go along with the Backbone live-code.
 
-Things you may want to cover:
+## Resources
 
-* Ruby version
+```
+GET /tasks
+  Get all tasks
+  Response body:
+    {
+      count: <number>,
+      tasks: [
+        {
+          id: <number>,
+          title: <string>,
+          description: <string>,
+          completed: <boolean>
+        }, ...
+      ]
+    }
 
-* System dependencies
+POST /tasks
+  Create a new task
+  Request body:
+    {
+      task: {
+        title: <string>,
+        description: <string>,
+        completed: <boolean>
+      }
+    }
+  Response body:
+    None on success, or a list of errors on failure
 
-* Configuration
+GET /tasks/<id>
+  Get a single task
+  Response body:
+    {
+      id: <number>,
+      title: <string>,
+      description: <string>,
+      completed: <boolean>
+    }
 
-* Database creation
+PUT /tasks/<id>
+  Modify a task
+  Request body:
+    {
+      task: {
+        title: <string>,
+        description: <string>,
+        completed: <boolean>
+      }
+    }
+  Response body:
+    None on success, or a list of errors on failure
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+DELETE /tasks/<id>
+  Delete a task
+```

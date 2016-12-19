@@ -26,12 +26,5 @@ module TasklistApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-
-    # # Allow cross-site requests
-    # # TODO: figure out how to allow anyone to access
-    # config.action_dispatch.default_headers = {
-    #   'Access-Control-Allow-Origin' => 'http://localhost:8081',
-    #   'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
-    # }
   end
 end

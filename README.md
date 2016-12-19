@@ -31,7 +31,10 @@ POST /tasks
       }
     }
   Response body:
-    None on success, or a list of errors on failure
+    A list of errors on failure, or
+    {
+      id: <number>
+    }
 
 GET /tasks/<id>
   Get a single task
